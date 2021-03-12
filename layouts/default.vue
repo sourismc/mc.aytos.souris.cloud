@@ -1,12 +1,24 @@
 <template>
   <div>
+    <Navigation />
     <Nuxt />
+    <footer class="mb-5">
+      <b-container>
+        <b-button type="button" variant="outline-success" class="float-right" href="https://github.com/sourismc/" target="_blank">
+          SourisMC <b-icon-github />
+        </b-button>
+        <p class="p-2">
+          &copy; 2021 Souris.CLOUD
+        </p>
+      </b-container>
+    </footer>
   </div>
 </template>
 
 <style>
 html {
   font-family:
+    'Montseratt',
     'Source Sans Pro',
     -apple-system,
     BlinkMacSystemFont,

@@ -11,12 +11,14 @@ export default {
       { hid: 'description', name: 'description', content: 'SourisMC Minecraft Server hosted on Aytos from Souris.CLOUD family.' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Montserrat&display=swap' }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    // '~/assets/fonts/montserrat.css',
     '~/assets/css/app.scss'
   ],
 
@@ -40,6 +42,10 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios'
   ],
+
+  bootstrapVue: {
+    icons: true
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
