@@ -17,8 +17,9 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <b-form-input disabled size="sm" class="mr-sm-2" placeholder="mc.aytos.souris.cloud" />
-            <b-button size="sm" class="my-2 my-sm-0" type="button" href="minecraft://aytos.souris.cloud">
+            <a ref="connectLink" :href="`minecraft://${serverAddress}`" class="hide"></a>
+            <b-form-input disabled size="sm" class="mr-sm-2" v-model="serverAddress" />
+            <b-button size="sm" class="my-2 my-sm-0" type="button" @click="copyAddress">
               Připojit
             </b-button>
           </b-nav-form>
@@ -35,7 +36,8 @@ export default {
   data () {
     return {
       navigationItems: [],
-      lastNavigationItemId: 0
+      lastNavigationItemId: 0,
+      serverAddress: 'aytos.souris.cloud:19132'
     }
   },
 
@@ -53,6 +55,19 @@ export default {
         disabled,
         to
       })
+    },
+
+    async copyAddress () {
+      try {
+        await navigator.clipboard.writeText(this.serverAddress)
+        this.$bvToast.toast('IP adresu včetně portu zkopírovanou ve schránce', {
+          autoHideDelay: 1000,
+          appendToast: true
+        })
+        this.$refs.connectLink.click()
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }
