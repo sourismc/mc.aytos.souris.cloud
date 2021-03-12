@@ -6,12 +6,22 @@
           <h1>Informace o serveru</h1>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col>
+          <ServerStatus />
+        </b-col>
+      </b-row>
     </b-container>
   </main>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      aspd: this.$aspd
+    }
+  }
 }
 </script>
 
