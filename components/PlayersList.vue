@@ -47,10 +47,10 @@ export default {
   },
 
   beforeMount () {
-    const vm = this
-    this.refreshTimer = setInterval(() => {
-      vm.$fetch()
-    }, 1000)
+    // const vm = this
+    // this.refreshTimer = setInterval(() => {
+    //   vm.$fetch()
+    // }, 1000)
   },
 
   beforeDestroy () {
