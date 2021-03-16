@@ -11,7 +11,7 @@
           <ServerStatus />
         </b-col>
       </b-row>
-      <b-row>
+      <b-row style="margin-top: 50px;">
         <b-col>
           <PlayersList />
         </b-col>

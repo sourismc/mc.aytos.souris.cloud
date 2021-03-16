@@ -5,7 +5,7 @@
         MOTD:
       </b-col>
       <b-col md="8">
-        {{ status.motd[0] }}
+        {{ status.motd[0].replace(/§./g, '') }}
       </b-col>
     </b-row>
     <b-row>
@@ -75,7 +75,7 @@ export default {
 
   async fetch () {
     console.log('fetching mcquery server status')
-    const status = await fetch('http://localhost:19199/status').then(res => res.json())
+    const status = await fetch('https://query.mc.aytos.souris.cloud/status').then(res => res.json())
 
     if (status.requestStatus === 'ok') {
       this.status = status
@@ -85,10 +85,10 @@ export default {
   },
 
   beforeMount () {
-    // const vm = this
-    // this.refreshTimer = setInterval(() => {
-    //   vm.$fetch()
-    // }, 1000)
+    const vm = this
+    this.refreshTimer = setInterval(() => {
+      vm.$fetch()
+    }, 1000)
   },
 
   beforeDestroy () {

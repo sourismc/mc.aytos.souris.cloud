@@ -3,21 +3,19 @@
     <b-row
       v-for="player in players"
       :key="player._id"
+      align-content="center"
     >
-      <b-col>
-        <h3>{{ player.name }}</h3>
+      <b-col cols="1">
+        <span :class="`dot-status dot-status--${player.onlineStatus ? 'online' : 'offline'}`"></span>
       </b-col>
       <b-col>
-        Money: {{ player.money }}
+        <h4>{{ player.name }}</h4>
       </b-col>
       <b-col>
-        Group: {{ player.group }}
+        Peníze: {{ player.money }}
       </b-col>
       <b-col>
-        UUID: {{ player.uuid }}
-      </b-col>
-      <b-col>
-        ONLINE: {{ player.onlineStatus ? 'Ano' : 'Ne' }}
+        Skupina: {{ translateGroup(player.group) }}
       </b-col>
     </b-row>
   </b-container>
@@ -37,7 +35,7 @@ export default {
 
   async fetch () {
     console.log('fetching mcquery players')
-    const players = await fetch('http://localhost:19199/players').then(res => res.json())
+    const players = await fetch('https://query.mc.aytos.souris.cloud/players').then(res => res.json())
 
     if (players.status === 'ok') {
       this.players = players.players
@@ -47,20 +45,42 @@ export default {
   },
 
   beforeMount () {
-    // const vm = this
-    // this.refreshTimer = setInterval(() => {
-    //   vm.$fetch()
-    // }, 1000)
+    const vm = this
+    this.refreshTimer = setInterval(() => {
+      vm.$fetch()
+    }, 1000)
   },
 
   beforeDestroy () {
     if (this.refreshTimer) {
       clearInterval(this.refreshTimer)
     }
+  },
+
+  methods: {
+    translateGroup (group) {
+      switch (group) {
+        case 'staff': return 'Admin'
+        case 'player': return 'Hráč'
+      }
+    }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.dot-status {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
 
+  &--offline {
+    background-color: darkred;
+  }
+
+  &--online {
+    background-color: darkgreen;
+  }
+}
 </style>
