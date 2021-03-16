@@ -88,7 +88,7 @@ export default {
     const vm = this
     this.refreshTimer = setInterval(() => {
       vm.$fetch()
-    }, 10000)
+    }, 1000)
   },
 
   beforeDestroy () {

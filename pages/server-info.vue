@@ -11,18 +11,17 @@
           <ServerStatus />
         </b-col>
       </b-row>
+      <b-row>
+        <b-col>
+          <PlayersList />
+        </b-col>
+      </b-row>
     </b-container>
   </main>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      aspd: this.$aspd
-    }
-  }
-}
+export default {}
 </script>
 
 <style scoped>
