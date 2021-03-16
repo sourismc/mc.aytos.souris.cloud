@@ -40,7 +40,7 @@ export default {
     const players = await fetch('http://localhost:19199/players').then(res => res.json())
 
     if (players.status === 'ok') {
-      this.players = players
+      this.players = players.players
     } else {
       throw players.error
     }
